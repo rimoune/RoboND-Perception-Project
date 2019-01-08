@@ -12,7 +12,7 @@ For each one of the three scenarios, I have extracted features for objects in th
 Please find below the normalized confusion matrices for the 3 scenarios:
 
 Scenario 1:
-![Confusion Matrix SVN - First Scenario] (https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/One/SVN_1.PNG)
+![Confusion Matrix SVN - First Scenario](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/One/SVN_1.PNG)
 Scenario 2:
 ![Confusion Matrix SVN - Second Scenario] (/home/robond/catkin_ws/rima_output/Two/SVN_1.PNG)
 Scenario 3:

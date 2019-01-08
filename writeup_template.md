@@ -14,9 +14,9 @@ Please find below the normalized confusion matrices for the 3 scenarios:
 Scenario 1:
 ![Confusion Matrix SVN - First Scenario](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/One/SVN_1.PNG)
 Scenario 2:
-![Confusion Matrix SVN - Second Scenario](/home/robond/catkin_ws/rima_output/Two/SVN_1.PNG)
+![Confusion Matrix SVN - Second Scenario](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/Two/SVN_2.PNG)
 Scenario 3:
-![Confusion Matrix SVN - Third Scenario](/home/robond/catkin_ws/rima_output/Three/SVN_1.PNG)
+![Confusion Matrix SVN - Third Scenario](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/Three/SVN_3.PNG)
 
 
 

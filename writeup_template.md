@@ -6,6 +6,21 @@
 
 # Required Steps for a Passing Submission:
 1. Extract features and train an SVM model on new objects (see `pick_list_*.yaml` in `/pr2_robot/config/` for the list of models you'll be trying to identify). 
+
+For each one of the three scenarios, I have extracted features for objects in that scenario. These features were then used to train a SVM for object recognition purposes. In the program "capture_features.py" I have increased the number of attempts to capture a valid poind cloud from 5 to 20. 
+
+Please find below the normalized confusion matrices for the 3 scenarios:
+
+Scenario 1:
+![alt text] (/home/robond/catkin_ws/rima_output/One/SVN_1.PNG)
+Scenario 2:
+![alt text] (/home/robond/catkin_ws/rima_output/Two/SVN_1.PNG)
+Scenario 3:
+![alt text] (/home/robond/catkin_ws/rima_output/Three/SVN_1.PNG)
+
+
+
+
 2. Write a ROS node and subscribe to `/pr2/world/points` topic. This topic contains noisy point cloud data that you must work with.
 3. Use filtering and RANSAC plane fitting to isolate the objects of interest from the rest of the scene.
 4. Apply Euclidean clustering to create separate clusters for individual items.

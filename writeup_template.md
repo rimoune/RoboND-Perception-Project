@@ -39,7 +39,7 @@ You're reading it!
 I wrote a ROS node 'perception' and subscribed to `/pr2/world/points` topic. As the topic contains noisy measurements, I have applied a statistical outlier filter. The outlier filter is based on the assumption of a Gaussian distribution of distances between a given point and its neighbors. Points that are "mean distance + threshold factor * standard deviation" from its k neighbors are considered outliers and removed from the point cloud. After testing different parameters, I chose k to be 50 and threshold factor to be 1.
 The result of applying the statistical filter can be inspected as below for scenario 2:
 
-###aggiungere immagini cloud scene e outlier
+### aggiungere immagini cloud scene e outlier
 
 Write a ROS node and subscribe to `/pr2/world/points` topic. This topic contains noisy point cloud data that you must work with.
 Use filtering and RANSAC plane fitting to isolate the objects of interest from the rest of the scene.

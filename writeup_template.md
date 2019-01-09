@@ -39,8 +39,6 @@ You're reading it!
 In the program "project_perception" I wrote a ROS node 'perception' and subscribed to `/pr2/world/points` topic. As the topic contains noisy measurements, I have applied a statistical outlier filter. The outlier filter is based on the assumption of a Gaussian distribution of distances between a given point and its neighbors. Points that are "mean distance + threshold factor * standard deviation" from its k neighbors are considered outliers and removed from the point cloud. After testing different parameters, I chose k to be 50 and threshold factor to be 1.
 As an example, please find below a screenshot of the scene before and after applying the filter for scenario 2:
 
-### Rima aggiungere immagini cloud scene e outlier
-
 ![Cloud Scene](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/Two/cloud_scene.png )
 
 ![Cloud Scene Outliers Removed](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/Two/cloud_scene_outliers_filtered.png)
@@ -52,13 +50,19 @@ For continuity with the previous example, I will demostrate the results using sc
 
 ### Rima aggiungere immagine voxel
 
+![Cloud after Voxel](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/Two/voxel.png)
+
 The next step in the perception pipeline was to isolate a region of interest. This was done by applying a passthrough filter on two axis: z and y. This resulted in a further data reduction (for scenarion 2, from 194,269 to 8291). Please find below the scene after applying the passthrough filters.
 
 ### Rima aggiungere immagine passthrough
 
+![Cloud after passthrough](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/Two/passthrough.png)
+
 In order to identify the objects in the pick list, I needed first to discriminate between the objects and the table within the region of interest. To do so, I have applied a RANSAC plane segmentation and retain the outliers (the objects). After experimenting with different "max distance" from the plane model, I was satisfied with the value 0.001 
 
 ### Rima aggiungere immagine cloud_objects
+
+![Cloud objects only](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/Two/cloud_objects.png)
 
 
 #### 2. Complete Exercise 2 steps: Pipeline including clustering for segmentation implemented.  
@@ -67,6 +71,9 @@ Now that I have isolated the objects in the region of interest, I was interested
 In the following image we can see the clusters identified by the algorithm, where each cluster has a distint color:
 
 ### Rima aggiungere immagine clustering
+
+![Cloud Clustered](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/Two/clustering.png)
+
 
 #### 2. Complete Exercise 3 Steps.  Features extracted and SVM trained.  Object recognition implemented.
  

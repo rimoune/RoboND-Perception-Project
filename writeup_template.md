@@ -75,8 +75,11 @@ In the following image we can see the clusters identified by the algorithm, wher
 
 Once the objects were segmented, it was time to perform object recognition. To accomplish this, I first trained a SVM on features vector extracted for objects in each scenario. The features were a combination of the color histogram in hsv color space and of the histogram of surface normals. The confusion matrices (with/without normalization) for each scenario can be viewed below:
 
-### Rima aggiungi Confusion Matrix per scenario 1-2-3
+![Confusion Matrices 1](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/One/SVM_1.PNG)
 
+![Confusion Matrices 2](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/Two/SVM_2.PNG)
+
+![Confusion Matrices 3](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/Three/SVM_3.PNG)
 
 The model was then used to predict the label for objects in each scenario and a label was output in RViz as it can be seen below:
 

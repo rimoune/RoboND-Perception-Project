@@ -37,12 +37,25 @@ You're reading it!
 ### Exercise 1, 2 and 3 pipeline implemented
 #### 1. Complete Exercise 1 steps. Pipeline for filtering and RANSAC plane fitting implemented.
 I wrote a ROS node 'perception' and subscribed to `/pr2/world/points` topic. As the topic contains noisy measurements, I have applied a statistical outlier filter. The outlier filter is based on the assumption of a Gaussian distribution of distances between a given point and its neighbors. Points that are "mean distance + threshold factor * standard deviation" from its k neighbors are considered outliers and removed from the point cloud. After testing different parameters, I chose k to be 50 and threshold factor to be 1.
-The result of applying the statistical filter can be inspected as below for scenario 2:
+As an example, please find below a screenshot of the scene before and after applying the filter for scenario 2:
 
-### aggiungere immagini cloud scene e outlier
+### Rima aggiungere immagini cloud scene e outlier
 
-Write a ROS node and subscribe to `/pr2/world/points` topic. This topic contains noisy point cloud data that you must work with.
-Use filtering and RANSAC plane fitting to isolate the objects of interest from the rest of the scene.
+Also, the point cloud changed from a count of 638,283 to 527,571 points. 
+
+To further reduce the number of points in the point cloud without sacrificing important information I have applied a Voxel Grid Downsampling filter. After testing with different leaf size, I chose a value of 0.007. 
+For continuity with the previous example, I will demostrate the results using scenario 2. By applying the filter, the number of points was further reduced to 194,269 and the result can be viewed below:
+
+### Rima aggiungere immagine voxel
+
+The next step in the perception pipeline was to isolate a region of interest. This was done by applying a passthrough filter on two axis: z and y. This resulted in a further data reduction (for scenarion 2, from 194,269 to 8291). Please find below the scene after applying the passthrough filters.
+
+### Rima aggiungere immagine passthrough
+
+In order to identify the objects in the pick list, I needed first to discriminate between the objects and the table within the region of interest. To do so, I have applied a RANSAC plane segmentation and retain the outliers (the objects). After experimenting with different "max distance" from the plane model, I was satisfied with the value 0.001 
+
+### Rima aggiungere immagine cloud_objects
+
 
 #### 2. Complete Exercise 2 steps: Pipeline including clustering for segmentation implemented.  
 

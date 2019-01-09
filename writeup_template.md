@@ -48,19 +48,16 @@ Also, the point cloud changed from a count of 638,283 to 527,571 points.
 To further reduce the number of points in the point cloud without sacrificing important information I have applied a Voxel Grid Downsampling filter. After testing with different leaf size, I chose a value of 0.007. 
 For continuity with the previous example, I will demostrate the results using scenario 2. By applying the filter, the number of points was further reduced to 194,269 and the result can be viewed below:
 
-### Rima aggiungere immagine voxel
-
+ 
 ![Cloud after Voxel](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/Two/voxel.png)
 
 The next step in the perception pipeline was to isolate a region of interest. This was done by applying a passthrough filter on two axis: z and y. This resulted in a further data reduction (for scenarion 2, from 194,269 to 8291). Please find below the scene after applying the passthrough filters.
 
-### Rima aggiungere immagine passthrough
-
+ 
 ![Cloud after passthrough](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/Two/passthrough.png)
 
 In order to identify the objects in the pick list, I needed first to discriminate between the objects and the table within the region of interest. To do so, I have applied a RANSAC plane segmentation and retain the outliers (the objects). After experimenting with different "max distance" from the plane model, I was satisfied with the value 0.001 
 
-### Rima aggiungere immagine cloud_objects
 
 ![Cloud objects only](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/Two/cloud_objects.png)
 
@@ -70,8 +67,7 @@ In order to identify the objects in the pick list, I needed first to discriminat
 Now that I have isolated the objects in the region of interest, I was interested in segmenting the points in distinct clusters. To accomplish this, I have applied a density based clustering algorithm: Euclidean clustering. After experimenting with different parameters, I chose a cluster tolerance = 0.01, a minimum cluster size of 100 and a maximum cluster size of 2000.
 In the following image we can see the clusters identified by the algorithm, where each cluster has a distint color:
 
-### Rima aggiungere immagine clustering
-
+ 
 ![Cloud Clustered](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/Two/clustering.png)
 
 

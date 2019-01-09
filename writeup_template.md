@@ -36,7 +36,7 @@ You're reading it!
 
 ### Exercise 1, 2 and 3 pipeline implemented
 #### 1. Complete Exercise 1 steps. Pipeline for filtering and RANSAC plane fitting implemented.
-I wrote a ROS node 'perception' and subscribed to `/pr2/world/points` topic. As the topic contains noisy measurements, I have applied a statistical outlier filter. The outlier filter is based on the assumption of a Gaussian distribution of distances between a given point and its neighbors. Points that are "mean distance + threshold factor * standard deviation" from its k neighbors are considered outliers and removed from the point cloud. After testing different parameters, I chose k to be 50 and threshold factor to be 1.
+In the program "project_perception" I wrote a ROS node 'perception' and subscribed to `/pr2/world/points` topic. As the topic contains noisy measurements, I have applied a statistical outlier filter. The outlier filter is based on the assumption of a Gaussian distribution of distances between a given point and its neighbors. Points that are "mean distance + threshold factor * standard deviation" from its k neighbors are considered outliers and removed from the point cloud. After testing different parameters, I chose k to be 50 and threshold factor to be 1.
 As an example, please find below a screenshot of the scene before and after applying the filter for scenario 2:
 
 ### Rima aggiungere immagini cloud scene e outlier
@@ -59,18 +59,18 @@ In order to identify the objects in the pick list, I needed first to discriminat
 
 #### 2. Complete Exercise 2 steps: Pipeline including clustering for segmentation implemented.  
 
+Now that I have isolated the objects in the region of interest, I was interested in segmenting the points in distinct clusters. To accomplish this, I have applied a density based clustering algorithm: Euclidean clustering. After experimenting with different parameters, I chose a cluster tolerance = 0.01, a minimum cluster size of 100 and a maximum cluster size of 2000.
+In the following image we can see the clusters identified by the algorithm, where each cluster has a distint color:
+
+### Rima aggiungere immagine clustering
+
 #### 2. Complete Exercise 3 Steps.  Features extracted and SVM trained.  Object recognition implemented.
-Here is an example of how to include an image in your writeup.
-
-![demo-1](https://user-images.githubusercontent.com/20687560/28748231-46b5b912-7467-11e7-8778-3095172b7b19.png)
-
+ 
 ### Pick and Place Setup
 
 #### 1. For all three tabletop setups (`test*.world`), perform object recognition, then read in respective pick list (`pick_list_*.yaml`). Next construct the messages that would comprise a valid `PickPlace` request output them to `.yaml` format.
 
-And here's another image! 
-![demo-2](https://user-images.githubusercontent.com/20687560/28748286-9f65680e-7468-11e7-83dc-f1a32380b89c.png)
-
+ 
 Spend some time at the end to discuss your code, what techniques you used, what worked and why, where the implementation might fail and how you might improve it if you were going to pursue this project further.  
 
 

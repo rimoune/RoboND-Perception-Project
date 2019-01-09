@@ -40,6 +40,8 @@ In the program "project_perception" I wrote a ROS node 'perception' and subscrib
 As an example, please find below a screenshot of the scene before and after applying the filter for scenario 2:
 
 ### Rima aggiungere immagini cloud scene e outlier
+[!Cloud Scene](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/Two/cloud_scene.png)
+[!Cloud Scene Outliers Removed](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/Two/cloud_scene_outliers_filtered.png)
 
 Also, the point cloud changed from a count of 638,283 to 527,571 points. 
 

@@ -6,21 +6,6 @@
 
 # Required Steps for a Passing Submission:
 1. Extract features and train an SVM model on new objects (see `pick_list_*.yaml` in `/pr2_robot/config/` for the list of models you'll be trying to identify). 
-
-For each one of the three scenarios, I have extracted features for objects in that scenario. These features were then used to train a SVM for object recognition purposes. In the program "capture_features.py" I have increased the number of attempts to capture a valid poind cloud from 5 to 20. 
-
-Please find below the normalized confusion matrices for the 3 scenarios:
-
-Scenario 1:
-![Confusion Matrix SVN - First Scenario](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/One/SVN_1.PNG)
-Scenario 2:
-![Confusion Matrix SVN - Second Scenario](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/Two/SVN_2.PNG)
-Scenario 3:
-![Confusion Matrix SVN - Third Scenario](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/Three/SVN_3.PNG)
-
-
-
-
 2. Write a ROS node and subscribe to `/pr2/world/points` topic. This topic contains noisy point cloud data that you must work with.
 3. Use filtering and RANSAC plane fitting to isolate the objects of interest from the rest of the scene.
 4. Apply Euclidean clustering to create separate clusters for individual items.
@@ -51,6 +36,10 @@ You're reading it!
 
 ### Exercise 1, 2 and 3 pipeline implemented
 #### 1. Complete Exercise 1 steps. Pipeline for filtering and RANSAC plane fitting implemented.
+I wrote a ROS node 'perception' and subscribed to `/pr2/world/points` topic. As the topic contains noisy measurements, I have applied a statistical outlier filter. The outlier filter is based on the assumption of a Gaussian distribution of distances between a given point and its neighbors. Points that are "mean distance + threshold factor * standard deviation" from its k neighbors are considered outliers and removed from the point cloud. After testing different parameters, I chose k to be 50 and threshold factor to be 1.
+
+Write a ROS node and subscribe to `/pr2/world/points` topic. This topic contains noisy point cloud data that you must work with.
+Use filtering and RANSAC plane fitting to isolate the objects of interest from the rest of the scene.
 
 #### 2. Complete Exercise 2 steps: Pipeline including clustering for segmentation implemented.  
 

@@ -73,7 +73,12 @@ In the following image we can see the clusters identified by the algorithm, wher
 
 #### 2. Complete Exercise 3 Steps.  Features extracted and SVM trained.  Object recognition implemented.
 
-Once the objects were segmented, it was time to perform object recognition. To accomplish this, I first trained a SVM on features vector extracted for objects in each scenario. The features were a concatenation of the color histogram in hsv color space and of the histogram of surface normals. The model was then used to predict the label for objects in each scenario and a label was output in RViz as it can be seen below:
+Once the objects were segmented, it was time to perform object recognition. To accomplish this, I first trained a SVM on features vector extracted for objects in each scenario. The features were a concatenation of the color histogram in hsv color space and of the histogram of surface normals. The confusion matrices (with/without normalization) for each scenario can be viewed below:
+
+### Rima aggiungi Confusion Matrix per scenario 1-2-3
+
+
+The model was then used to predict the label for objects in each scenario and a label was output in RViz as it can be seen below:
 
 ### Rima aggiungi Rviz per scenario 1-2-3
 

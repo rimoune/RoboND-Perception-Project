@@ -86,7 +86,7 @@ Second Scenario:
 
 Third Scenario:
 
-![Confusion Matrices 3](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/Three/SVM_3.PNG)
+![Confusion Matrices 3](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/Three/SVM_Confusion_Matrix_3.PNG)
 
 The model was then used to predict the label for objects in each scenario and a label was output in RViz as it can be seen below:
 

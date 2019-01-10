@@ -82,7 +82,7 @@ First Scenario:
 Second Scenario:
 
 
-![Confusion Matrices 2](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/Two/SVM_2.PNG)
+![Confusion Matrices 2](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/Two/SVM_Confusion_Matrix_2.PNG)
 
 Third Scenario:
 

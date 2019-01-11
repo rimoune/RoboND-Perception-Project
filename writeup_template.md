@@ -73,7 +73,7 @@ In the following image we can see the clusters identified by the algorithm, wher
 
 #### 2. Complete Exercise 3 Steps.  Features extracted and SVM trained.  Object recognition implemented.
 
-Once the objects were segmented, it was time to perform object recognition. To accomplish this, I first trained a SVM on features vector extracted for objects in each scenario. The features were a combination of hsv and surface normals signatures. The confusion matrices (with/without normalization) for each scenario can be viewed below:
+Once the objects were segmented, it was time to perform object recognition. To accomplish this, I first trained a SVM on features vector extracted for objects in each scenario. The features were a combination of hsv and surface normals signatures. The normalized confusion matrices for each scenario can be seen below:
 
 First Scenario:
 
@@ -101,6 +101,8 @@ Second Scenario:
 Third Scenario:
 
 ![Object Recognition 3](https://github.com/rimoune/RoboND-Perception-Project/blob/master/output/Three/Object_Recognition_3.PNG)
+
+It can be seen that the program correctly recognizes 4 out of 5 objects in scenario 2 (it misses "book", which was not included in the scenario) and 6 out of 8 objects in scenario 3 (it misses glue and sticky notes). 
 
 ### Pick and Place Setup
 

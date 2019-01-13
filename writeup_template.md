@@ -108,7 +108,9 @@ It can be seen that the program correctly recognizes 4 out of 5 objects in scena
 
 #### 1. For all three tabletop setups (`test*.world`), perform object recognition, then read in respective pick list (`pick_list_*.yaml`). Next construct the messages that would comprise a valid `PickPlace` request output them to `.yaml` format.
 
- 
+Once the object recognition step is completed, I could loop through the pick list (relative to a particular tabletop scenario) and write a message to a .yaml file with the following information: arm name responsible for picking up the object, the object name, the location of the object on the table, where to drop it and information regarding which scenario we are looking at. From the "/object_list" parameter I've retrieved the object name and the group it belongs to, and from the "/dropbox" parameter the arm name and the drop position. For objects in the pick list that were recognized, the coordinates of the centroid were calculated and served as "pick pose". 
+Please find 
+
 Spend some time at the end to discuss your code, what techniques you used, what worked and why, where the implementation might fail and how you might improve it if you were going to pursue this project further.  
 
 

@@ -1,7 +1,4 @@
 #!/usr/bin/env python
-#RL 7Jan Change statistical filter:     outlier_filter.set_mean_k(30) -->     outlier_filter.set_mean_k(50)
-#RL 7Jan Change statistical filter:     x = 2.0 -->     x = 0.05
-#RL 7Jan x = 0.05 --> 1.0
 
 # Import modules
 import numpy as np
@@ -26,8 +23,6 @@ from std_msgs.msg import String
 from pr2_robot.srv import *
 from rospy_message_converter import message_converter
 import yaml
-from std_msgs.msg import Int32 #RL added on 12/17/18 non serve
-from std_msgs.msg import String #RL added on 12/17/18 non serve
 
 
 
@@ -61,11 +56,12 @@ def pcl_callback(pcl_msg):
 
     # TODO: Convert ROS msg to PCL data
     cloud=ros_to_pcl(pcl_msg)
+    #save the cloud scene for testing purposes
     pcl.save(cloud,"./rima_output/cloud_scene.pcd")
     
-    # TODO: Statistical Outlier Filtering # RL added on 12/19
+    # TODO: Statistical Outlier Filtering 
     #Outlier Removal Filter
-    outlier_filter = cloud.make_statistical_outlier_filter()# RL added on 12/19
+    outlier_filter = cloud.make_statistical_outlier_filter()
 
     # Set the number of neighboring points to analyze for any given point
     outlier_filter.set_mean_k(50)
@@ -79,9 +75,6 @@ def pcl_callback(pcl_msg):
     # Finally call the filter function for magic
     cloud_filtered = outlier_filter.filter()
 
-    #pcl.save(cloud_filtered, "./rima_output/cloud_filtered.pcd") #RL added on Jan2 to play with statistical filtering
-    #outlier_filter.set_negative(True)#RL added on Jan2 to play with statistical filtering
-    #pcl.save(outlier_filter.filter(),"./rima_output/cloud_filtered_outliers.pcd")#RL added on Jan2 to play with statistical filtering
 
     # TODO: Voxel Grid Downsampling
     
@@ -109,7 +102,6 @@ def pcl_callback(pcl_msg):
     # Finally use the filter function to obtain the resultant point cloud. 
     cloud_filtered = passthrough.filter()
 
-    #RL added the following pass through on 28/12
     passthrough = cloud_filtered.make_passthrough_filter()
     # Assign axis and range to the passthrough filter object.
     filter_axis = 'y'
@@ -120,12 +112,7 @@ def pcl_callback(pcl_msg):
     passthrough.set_filter_limits(axis_min, axis_max)
     # Finally use the filter function to obtain the resultant point cloud. 
     cloud_filtered = passthrough.filter()
-    #end 28/12
-
-
-    #filename = 'pass_through_filtered.pcd' #RL added on 28/12 
-    #pcl.save(cloud_filtered, filename) #RL added on 28/12
-
+    
     # TODO: RANSAC Plane Segmentation
 
     # Create the segmentation object
@@ -161,7 +148,7 @@ def pcl_callback(pcl_msg):
 	# NOTE: These are poor choices of clustering parameters
 	# Your task is to experiment and find values that work for segmenting objects.
     ec.set_ClusterTolerance(0.01)
-    ec.set_MinClusterSize(100)#changed on Jan3 from 10 to 100
+    ec.set_MinClusterSize(100)
     ec.set_MaxClusterSize(2000)
 	# Search the k-d tree for clusters
     ec.set_SearchMethod(tree)
@@ -219,7 +206,7 @@ def pcl_callback(pcl_msg):
 
         # Publish a label into RViz
         label_pos = list(white_cloud[pts_list[0]])
-        label_pos[2] += .4 #RL changed from 0.4 to 0.25 back to 0.4
+        label_pos[2] += .4 
         object_markers_pub.publish(make_label(label,label_pos, index))
 
         # Add the detected object to the list of detected objects.
@@ -238,8 +225,8 @@ def pcl_callback(pcl_msg):
     # Could add some logic to determine whether or not your object detections are robust
     # before calling pr2_mover()
     try:
-        #pr2_mover(detected_objects_list) commented out RL 12/15/2018 error detected_objects_list not defined
-        pr2_mover(detected_objects)       # added RL 12/15/2018 error detected_objects_list not defined
+        
+        pr2_mover(detected_objects)       
     except rospy.ROSInterruptException:
         pass
 
@@ -247,12 +234,12 @@ def pcl_callback(pcl_msg):
 def pr2_mover(object_list):
 
     # TODO: Initialize variables
-    test_scene_num = Int32() # RL added on 12/17/18
-    test_scene_num.data = 3 # RL How To retrieve this automatically?
+    test_scene_num = Int32() 
+    test_scene_num.data = 1 
     
-    object_name = String()  # RL added on 12/17/18
-    arm_name = String() # ci torno 
-    pick_pose=Pose() # RL added on 12/17/18
+    object_name = String()  
+    arm_name = String() 
+    pick_pose=Pose() 
     place_pose=Pose()
 
     # TODO: Get/Read parameters
@@ -263,17 +250,17 @@ def pr2_mover(object_list):
 
 
 
-    # TODO: Rotate PR2 in place to capture side tables for the collision map ?
+    # TODO: Rotate PR2 in place to capture side tables for the collision map 
 
     # TODO: Loop through the pick list
-    dict_list = [] # RL added on 12/17/18
+    dict_list = [] 
 
     for i in range (len(object_list_param)):
 
         # TODO: Parse parameters into individual variables
         object_pick_name = object_list_param[i]['name']
         print "I: ",i, "object name: ", object_pick_name
-        object_name.data = object_list_param[i]['name']#RL added 12/17/18
+        object_name.data = object_list_param[i]['name']
 
         object_pick_group = object_list_param[i]['group']
         print "I: ",i, "object group: ", object_pick_group
@@ -311,12 +298,12 @@ def pr2_mover(object_list):
                   centroids.append(np.mean(points_arr, axis=0)[:3])   
         	  print "Labels: ", labels  
                   print "Centroids: ", centroids 
-        	  pick_pose.position.x = float(centroids[0][0]) # RL added on 12/17/18
-	          pick_pose.position.y = float(centroids[0][1]) # RL added on 12/17/18
-                  pick_pose.position.z = float(centroids[0][2])# RL added on 12/17/18
+        	  pick_pose.position.x = float(centroids[0][0]) 
+	          pick_pose.position.y = float(centroids[0][1]) 
+                  pick_pose.position.z = float(centroids[0][2])
 
         # TODO: Create a list of dictionaries (made with make_yaml_dict()) for later output to yaml format
-        yaml_dict = make_yaml_dict(test_scene_num, arm_name, object_name, pick_pose, place_pose) #RL added on 12/17/18
+        yaml_dict = make_yaml_dict(test_scene_num, arm_name, object_name, pick_pose, place_pose) 
         
         dict_list.append(yaml_dict)
         print dict_list
@@ -328,7 +315,7 @@ def pr2_mover(object_list):
             pick_place_routine = rospy.ServiceProxy('pick_place_routine', PickPlace)
 
             # TODO: Insert your message variables to be sent as a service request
-            #resp = pick_place_routine(TEST_SCENE_NUM, OBJECT_NAME, WHICH_ARM, PICK_POSE, PLACE_POSE) RL commented out on 12/17/18 because of the which_arm
+            
             resp = pick_place_routine(test_scene_num, object_name, arm_name, pick_pose, place_pose)
 
             print ("Response: ",resp.success)
@@ -338,7 +325,7 @@ def pr2_mover(object_list):
 
 
     # TODO: Output your request parameters into output yaml file # RL added on 12/17/18
-    yaml_filename ='/home/robond/catkin_ws/src/RoboND-Perception-Project/pr2_robot/config/output_3.yaml' 
+    yaml_filename ='/home/robond/catkin_ws/src/RoboND-Perception-Project/pr2_robot/config/output_1.yaml' 
     send_to_yaml(yaml_filename, dict_list)
 
 
